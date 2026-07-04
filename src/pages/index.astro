@@ -1,17 +1,54 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
 
+const proofPoints = [
+  { label: "Now:", text: "Software Engineering Intern, Visa Inc." },
+  { text: "Cut OpenAI API costs 50% by building a cache-aside layer for an AI newsletter pipeline (GCP, Prisma)" },
+  { text: "Cut printer OTA deployment time 90% by automating updates at re:3D" },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Yasseen Hilal — Software Engineer"
+  description="Yasseen Hilal is a software engineer interning at Visa, with prior internships at Paycom and re:3D. CS student at UT Austin, Class of 2027."
+  personSchema
+>
+  <section class="flex min-h-[calc(100vh-72px)] flex-col justify-center px-6 py-24">
+    <div class="mx-auto w-full max-w-[1150px]">
+      <p class="mb-6 text-[20px] font-medium leading-[1.4] text-whiteout/70">
+        Software Engineer Intern at Visa &middot; UT Austin Computer Science, Class of 2027
+      </p>
+
+      <h1 class="font-control-compressed text-[clamp(2.75rem,13vw,259px)] font-black uppercase leading-[0.85] text-whiteout">
+        Yasseen Hilal
+      </h1>
+
+      <p class="mt-10 max-w-[700px] text-[16px] leading-[1.5] text-whiteout/80">
+        I'm a software engineer currently interning at Visa, after internships at Paycom and re:3D
+        building everything from Kafka-backed processing queues to automated over-the-air update
+        pipelines for 3D printers. I'm finishing my CS degree at UT Austin and looking ahead to
+        new grad software engineer and <span class="font-control-cursive text-[24px] text-twilight-blue">AI</span> engineer
+        roles, in Austin and beyond.
+      </p>
+
+      <ul class="mt-10 flex max-w-[700px] flex-col gap-3">
+        {proofPoints.map((point) => (
+          <li class="flex gap-3 text-[16px] leading-[1.5] text-whiteout/80">
+            <span class="mt-[9px] h-1 w-1 shrink-0 rounded-full bg-signal-blue" />
+            <span>
+              {point.label && <strong class="font-medium text-whiteout">{point.label} </strong>}
+              {point.text}
+            </span>
+          </li>
+        ))}
+      </ul>
+
+      <a
+        href="/experience"
+        class="mt-10 inline-block border-b-2 border-signal-blue px-2 pb-1 text-[16px] font-medium text-signal-blue no-underline transition-opacity hover:opacity-80"
+      >
+        See the full story &rarr; Experience
+      </a>
+    </div>
+  </section>
+</BaseLayout>
