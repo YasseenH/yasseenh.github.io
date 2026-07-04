@@ -1,0 +1,92 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+
+const projects = [
+  {
+    name: "Overexplained — AI-Powered Daily Newsletter",
+    stack: "GCP, React, Express.js, OpenAI, Prisma, Resend",
+    year: "2025",
+    links: ["GitHub", "Demo"],
+    bullets: [
+      "Delivered personalized newsletters to 10+ subscribers daily using Cloud Run, Pub/Sub, and Cloud Scheduler.",
+      "Cut OpenAI API costs 50% with a Prisma cache-aside layer for content by topic and date.",
+      "Improved reliability with Resend-based onboarding flows and CI/CD pipelines on Vercel and Cloud Build.",
+    ],
+  },
+  {
+    name: "AI Chatbot for CS Students",
+    stack: "Next.js, JavaScript, OpenAI API, Vercel",
+    links: ["GitHub"],
+    bullets: [
+      "Built a context-aware chatbot for CS students with customizable conversation flows.",
+      "Deployed on Vercel with tuned response generation for fast, relevant answers.",
+    ],
+  },
+  {
+    name: "AI-Powered Discord Bot",
+    stack: "Python, Discord.py, Gemini API, PyPDF",
+    links: ["GitHub"],
+    bullets: [
+      "Built a Discord bot that summarizes PDFs using Google's Gemini API.",
+      "Automated document processing so users don't have to dig through long files by hand.",
+    ],
+  },
+  {
+    name: "Movie Webscraper & Recommender",
+    stack: "Java, JSoup, Python, pandas, scikit-learn",
+    links: ["GitHub"],
+    bullets: [
+      "Scraped and structured movie data, then built a recommendation model based on user preferences.",
+    ],
+  },
+  {
+    name: "Huffman File Compression System",
+    stack: "Java, Data Structures & Algorithms",
+    bullets: [
+      "Built a Huffman encoding system achieving 40% average file size reduction while preserving data integrity.",
+      "Added error handling and cross-format compatibility for real-world use.",
+    ],
+  },
+  {
+    name: "Connect 4 Game Engine",
+    stack: "Java, Swing GUI",
+    links: ["GitHub"],
+    bullets: [
+      "Built a Connect Four game with a modular architecture and a responsive Java Swing UI.",
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Projects — Yasseen Hilal"
+  description="Side projects by Yasseen Hilal, including an AI-powered newsletter pipeline, a CS-student chatbot, and a Discord PDF summarizer."
+>
+  <section class="px-6 py-24">
+    <div class="mx-auto max-w-[1150px]">
+      <h1 class="font-control-compressed text-[clamp(2.5rem,7vw,80px)] font-black uppercase leading-[0.95] text-whiteout">
+        Projects
+      </h1>
+
+      <p class="mt-6 max-w-[700px] text-[16px] leading-[1.5] text-whiteout/80">
+        Outside of internships, I build things end to end &mdash; mostly AI-powered tools and
+        small backend systems. Here's what I've shipped, newest first.
+      </p>
+
+      <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
+        {projects.map((project) => <ProjectCard {...project} />)}
+      </div>
+
+      <p class="mt-12 max-w-[700px] text-[16px] leading-[1.5] text-whiteout/80">
+        Want the technical detail behind the internships?
+        <a href="/experience" class="border-b-2 border-signal-blue px-1 pb-0.5 font-medium text-signal-blue no-underline transition-opacity hover:opacity-80">
+          Experience
+        </a>, or reach out
+        <a href="/contact" class="border-b-2 border-signal-blue px-1 pb-0.5 font-medium text-signal-blue no-underline transition-opacity hover:opacity-80">
+          Contact
+        </a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
