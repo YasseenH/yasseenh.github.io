@@ -147,6 +147,17 @@ Outside the classroom, I spent a year as a Microsoft TEALS Teaching Assistant, m
 
 I like building things that ship — from production APIs to AI pipelines — and I'm currently interning as a Software Engineer at Visa.
 
+### Skills
+Merged from the old site's skills list and the resume; resume wins where they conflict. Rendered as a compact grouped block, not a hero feature — the real proof is already attached to specific stacks in Experience and Projects.
+
+**Languages:** Java, Python, TypeScript, JavaScript, C/C++, SQL, Bash, PHP, HTML/CSS, ARM Assembly
+
+**Frameworks & Libraries:** React, Next.js, Node.js, Flask, Express.js, Spring Boot, FastAPI, Tailwind CSS, Bootstrap, SQLAlchemy, Doctrine, pandas, scikit-learn, JSoup, Discord.py
+
+**Databases:** PostgreSQL, MySQL, MongoDB, Firebase, H2, SQLite
+
+**Tools & Platforms:** Git, Linux, Google Cloud, Docker, Kubernetes, Kafka, Jira, Postman, Vercel, Prisma, OpenAI API, CI/CD
+
 ### CTA
 Get in touch → **Contact**
 
