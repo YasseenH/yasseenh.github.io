@@ -1,0 +1,87 @@
+---
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/experience", label: "Experience" },
+  { href: "/projects", label: "Projects" },
+  { href: "/about", label: "About" },
+];
+
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isActive = (href: string) => (href === "/" ? path === "/" : path.startsWith(href));
+---
+
+<header class="sticky top-0 z-50 h-[72px] border-b border-whiteout/10 bg-black-void/90 backdrop-blur">
+  <div class="mx-auto flex h-full max-w-[1150px] items-center justify-between px-6">
+    <a href="/" class="text-[16px] font-medium text-whiteout no-underline">
+      Yasseen Hilal
+    </a>
+
+    <nav class="hidden items-center gap-8 sm:flex">
+      {links.map((link) => (
+        <a
+          href={link.href}
+          class:list={[
+            "text-[14px] font-medium no-underline transition-colors",
+            isActive(link.href) ? "text-whiteout" : "text-whiteout/60 hover:text-whiteout",
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a
+        href="/contact"
+        class="hidden rounded-buttons border border-whiteout px-4 py-[10px] text-[14px] font-medium text-whiteout no-underline transition-colors hover:bg-whiteout hover:text-ink sm:inline-block"
+      >
+        Contact
+      </a>
+
+      <button
+        id="nav-toggle"
+        type="button"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+        class="flex h-9 w-9 items-center justify-center rounded-buttons border border-whiteout/40 text-whiteout sm:hidden"
+      >
+        <span class="sr-only">Menu</span>
+        <svg id="nav-icon-open" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg id="nav-icon-close" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="hidden"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <nav id="nav-mobile" class="hidden flex-col border-t border-whiteout/10 bg-black-void px-6 py-4 sm:hidden">
+    {links.map((link) => (
+      <a
+        href={link.href}
+        class:list={[
+          "py-3 text-[16px] font-medium no-underline",
+          isActive(link.href) ? "text-whiteout" : "text-whiteout/60",
+        ]}
+      >
+        {link.label}
+      </a>
+    ))}
+    <a href="/contact" class="py-3 text-[16px] font-medium text-signal-blue no-underline">
+      Contact
+    </a>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById("nav-toggle");
+  const menu = document.getElementById("nav-mobile");
+  const iconOpen = document.getElementById("nav-icon-open");
+  const iconClose = document.getElementById("nav-icon-close");
+
+  toggle?.addEventListener("click", () => {
+    const isOpen = menu?.classList.contains("flex");
+    menu?.classList.toggle("hidden", isOpen);
+    menu?.classList.toggle("flex", !isOpen);
+    iconOpen?.classList.toggle("hidden", !isOpen);
+    iconClose?.classList.toggle("hidden", isOpen);
+    toggle?.setAttribute("aria-expanded", String(!isOpen));
+  });
+</script>
