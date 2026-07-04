@@ -24,7 +24,7 @@ export default function JobEntry({ company, role, location, dates, bullets, note
     >
       <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
         <h3 className="text-[20px] font-medium leading-[1.4]">
-          {company} &mdash; {role}
+          {company} – {role}
         </h3>
         <p className="text-[13px] leading-[1.5] text-ink/60">{dates}</p>
       </div>
