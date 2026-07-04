@@ -10,7 +10,7 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
 const isActive = (href: string) => (href === "/" ? path === "/" : path.startsWith(href));
 ---
 
-<header class="sticky top-0 z-50 h-[72px] border-b border-whiteout/10 bg-black-void/90 backdrop-blur">
+<header id="site-nav" class="sticky top-0 z-50 h-[72px] border-b border-whiteout/10 bg-black-void/90 backdrop-blur transition-[height,background-color,border-color] duration-300">
   <div class="mx-auto flex h-full max-w-[1150px] items-center justify-between px-6">
     <a href="/" class="text-[16px] font-medium text-whiteout no-underline">
       Yasseen Hilal
@@ -84,4 +84,16 @@ const isActive = (href: string) => (href === "/" ? path === "/" : path.startsWit
     iconClose?.classList.toggle("hidden", isOpen);
     toggle?.setAttribute("aria-expanded", String(!isOpen));
   });
+
+  const nav = document.getElementById("site-nav");
+  const setScrolled = (scrolled: boolean) => {
+    nav?.classList.toggle("h-[72px]", !scrolled);
+    nav?.classList.toggle("bg-black-void/90", !scrolled);
+    nav?.classList.toggle("border-whiteout/10", !scrolled);
+    nav?.classList.toggle("h-[60px]", scrolled);
+    nav?.classList.toggle("bg-black-void/95", scrolled);
+    nav?.classList.toggle("border-whiteout/20", scrolled);
+  };
+  setScrolled(window.scrollY > 8);
+  window.addEventListener("scroll", () => setScrolled(window.scrollY > 8), { passive: true });
 </script>
