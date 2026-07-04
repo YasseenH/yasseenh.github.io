@@ -1,0 +1,37 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="About — Yasseen Hilal">
+  <section class="px-6 py-24">
+    <div class="mx-auto max-w-[700px]">
+      <h1 class="font-control-compressed text-[clamp(2.5rem,7vw,80px)] font-black uppercase leading-[0.95] text-whiteout">
+        About
+      </h1>
+
+      <div class="mt-8 flex flex-col gap-5 text-[16px] leading-[1.5] text-whiteout/80">
+        <p>
+          I'm a Computer Science student at the University of Texas at Austin, Class of 2027,
+          minoring in Entrepreneurship. My coursework covers data structures and algorithms,
+          operating systems, computer architecture, machine learning, cloud computing, agentic
+          software engineering, and data management.
+        </p>
+        <p>
+          Outside the classroom, I spent a year as a Microsoft TEALS Teaching Assistant,
+          mentoring 30+ high school students learning Python at low-resource schools.
+        </p>
+        <p>
+          I like building things that ship &mdash; from production APIs to AI pipelines &mdash;
+          and I'm currently interning as a Software Engineer at Visa.
+        </p>
+      </div>
+
+      <a
+        href="/contact"
+        class="mt-10 inline-block border-b-2 border-signal-blue px-2 pb-1 text-[16px] font-medium text-signal-blue no-underline transition-opacity hover:opacity-80"
+      >
+        Get in touch &rarr; Contact
+      </a>
+    </div>
+  </section>
+</BaseLayout>

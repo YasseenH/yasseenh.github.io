@@ -1,0 +1,37 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const links = [
+  { label: "Email", value: "yasseenhilal@utexas.edu", href: "mailto:yasseenhilal@utexas.edu" },
+  { label: "LinkedIn", value: "linkedin.com/in/yasseenhilal", href: "https://linkedin.com/in/yasseenhilal" },
+  { label: "GitHub", value: "github.com/YasseenH", href: "https://github.com/YasseenH" },
+];
+---
+
+<BaseLayout title="Contact — Yasseen Hilal">
+  <section class="px-6 py-24">
+    <div class="mx-auto max-w-[700px]">
+      <h1 class="font-control-compressed text-[clamp(2.5rem,7vw,80px)] font-black uppercase leading-[0.95] text-whiteout">
+        Get in Touch
+      </h1>
+
+      <p class="mt-8 text-[16px] leading-[1.5] text-whiteout/80">
+        The best way to reach me is email. I'm also on LinkedIn and GitHub.
+      </p>
+
+      <ul class="mt-8 flex flex-col gap-4">
+        {links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="inline-flex items-baseline gap-3 border-b-2 border-signal-blue pb-1 no-underline transition-opacity hover:opacity-80"
+            >
+              <span class="text-[13px] font-medium uppercase tracking-wide text-whiteout/50">{link.label}</span>
+              <span class="text-[16px] font-medium text-signal-blue">{link.value}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
