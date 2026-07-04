@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import JobEntry from "../components/JobEntry.astro";
+import JobEntry from "../components/JobEntry.tsx";
+import Reveal from "../components/motion/Reveal.tsx";
 
 const jobs = [
   {
@@ -67,18 +68,22 @@ const jobs = [
 >
   <section class="px-6 py-24">
     <div class="mx-auto max-w-[1150px]">
-      <h1 class="font-control-compressed text-[clamp(2.5rem,7vw,80px)] font-black uppercase leading-[0.95] text-whiteout">
-        Experience
-      </h1>
+      <Reveal client:load>
+        <h1 class="font-control-compressed text-[clamp(2.5rem,7vw,80px)] font-black uppercase leading-[0.95] text-whiteout">
+          Experience
+        </h1>
+      </Reveal>
 
-      <p class="mt-6 max-w-[700px] text-[16px] leading-[1.5] text-whiteout/80">
-        I've spent the last two years interning as a software engineer across fintech, HR tech,
-        and hardware &mdash; from Visa to a 3D-printing startup here in Austin, TX. Here's what
-        I've built at each stop, roughly what a new grad software engineer role would build on.
-      </p>
+      <Reveal client:load delay={0.1}>
+        <p class="mt-6 max-w-[700px] text-[16px] leading-[1.5] text-whiteout/80">
+          I've spent the last two years interning as a software engineer across fintech, HR tech,
+          and hardware &mdash; from Visa to a 3D-printing startup here in Austin, TX. Here's what
+          I've built at each stop, roughly what a new grad software engineer role would build on.
+        </p>
+      </Reveal>
 
       <div class="mt-12 flex flex-col gap-6">
-        {jobs.map((job) => <JobEntry {...job} />)}
+        {jobs.map((job, i) => <JobEntry {...job} delay={i * 0.06} client:visible />)}
       </div>
 
       <a

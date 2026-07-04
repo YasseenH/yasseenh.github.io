@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import ProjectCard from "../components/ProjectCard.astro";
+import ProjectCard from "../components/ProjectCard.tsx";
+import Reveal from "../components/motion/Reveal.tsx";
 
 const projects = [
   {
@@ -65,17 +66,21 @@ const projects = [
 >
   <section class="px-6 py-24">
     <div class="mx-auto max-w-[1150px]">
-      <h1 class="font-control-compressed text-[clamp(2.5rem,7vw,80px)] font-black uppercase leading-[0.95] text-whiteout">
-        Projects
-      </h1>
+      <Reveal client:load>
+        <h1 class="font-control-compressed text-[clamp(2.5rem,7vw,80px)] font-black uppercase leading-[0.95] text-whiteout">
+          Projects
+        </h1>
+      </Reveal>
 
-      <p class="mt-6 max-w-[700px] text-[16px] leading-[1.5] text-whiteout/80">
-        Outside of internships, I build things end to end &mdash; mostly AI-powered tools and
-        small backend systems. Here's what I've shipped, newest first.
-      </p>
+      <Reveal client:load delay={0.1}>
+        <p class="mt-6 max-w-[700px] text-[16px] leading-[1.5] text-whiteout/80">
+          Outside of internships, I build things end to end &mdash; mostly AI-powered tools and
+          small backend systems. Here's what I've shipped, newest first.
+        </p>
+      </Reveal>
 
       <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
-        {projects.map((project) => <ProjectCard {...project} />)}
+        {projects.map((project, i) => <ProjectCard {...project} delay={(i % 2) * 0.06} client:visible />)}
       </div>
 
       <p class="mt-12 max-w-[700px] text-[16px] leading-[1.5] text-whiteout/80">
