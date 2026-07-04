@@ -1,10 +1,15 @@
 import { motion } from "framer-motion";
 
+interface ProjectLink {
+  label: string;
+  href?: string;
+}
+
 interface Props {
   name: string;
   stack: string;
   year?: string;
-  links?: string[];
+  links?: ProjectLink[];
   bullets: string[];
   delay?: number;
 }
@@ -30,11 +35,23 @@ export default function ProjectCard({ name, stack, year, links, bullets, delay =
 
       {links && links.length > 0 && (
         <div className="mt-3 flex flex-wrap gap-2">
-          {links.map((link) => (
-            <span key={link} className="rounded-pills bg-ink/[0.06] px-3 py-1 text-[13px] font-medium text-ink/70">
-              {link}
-            </span>
-          ))}
+          {links.map((link) =>
+            link.href ? (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-pills bg-ink/6 px-3 py-1 text-[13px] font-medium text-ink/70 no-underline transition-colors hover:bg-ink/10"
+              >
+                {link.label}
+              </a>
+            ) : (
+              <span key={link.label} className="rounded-pills bg-ink/6 px-3 py-1 text-[13px] font-medium text-ink/70">
+                {link.label}
+              </span>
+            )
+          )}
         </div>
       )}
 

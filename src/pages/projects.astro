@@ -5,10 +5,13 @@ import Reveal from "../components/motion/Reveal.tsx";
 
 const projects = [
   {
-    name: "Overexplained — AI-Powered Daily Newsletter",
+    name: "Overexplained – AI-Powered Daily Newsletter",
     stack: "GCP, React, Express.js, OpenAI, Prisma, Resend",
     year: "2025",
-    links: ["GitHub", "Demo"],
+    links: [
+      { label: "GitHub", href: "https://github.com/YasseenH/overexplained-ai" },
+      { label: "Demo" },
+    ],
     bullets: [
       "Delivered personalized newsletters to 10+ subscribers daily using Cloud Run, Pub/Sub, and Cloud Scheduler.",
       "Cut OpenAI API costs 50% with a Prisma cache-aside layer for content by topic and date.",
@@ -18,7 +21,7 @@ const projects = [
   {
     name: "AI Chatbot for CS Students",
     stack: "Next.js, JavaScript, OpenAI API, Vercel",
-    links: ["GitHub"],
+    links: [{ label: "GitHub", href: "https://github.com/YasseenH/ai-chatbot" }],
     bullets: [
       "Built a context-aware chatbot for CS students with customizable conversation flows.",
       "Deployed on Vercel with tuned response generation for fast, relevant answers.",
@@ -27,7 +30,7 @@ const projects = [
   {
     name: "AI-Powered Discord Bot",
     stack: "Python, Discord.py, Gemini API, PyPDF",
-    links: ["GitHub"],
+    links: [{ label: "GitHub", href: "https://github.com/YasseenH/discord-bot" }],
     bullets: [
       "Built a Discord bot that summarizes PDFs using Google's Gemini API.",
       "Automated document processing so users don't have to dig through long files by hand.",
@@ -36,7 +39,7 @@ const projects = [
   {
     name: "Movie Webscraper & Recommender",
     stack: "Java, JSoup, Python, pandas, scikit-learn",
-    links: ["GitHub"],
+    links: [{ label: "GitHub", href: "https://github.com/YasseenH/movie-scraper" }],
     bullets: [
       "Scraped and structured movie data, then built a recommendation model based on user preferences.",
     ],
@@ -52,7 +55,7 @@ const projects = [
   {
     name: "Connect 4 Game Engine",
     stack: "Java, Swing GUI",
-    links: ["GitHub"],
+    links: [{ label: "GitHub", href: "https://github.com/YasseenH/connect-4" }],
     bullets: [
       "Built a Connect Four game with a modular architecture and a responsive Java Swing UI.",
     ],
@@ -61,7 +64,7 @@ const projects = [
 ---
 
 <BaseLayout
-  title="Projects — Yasseen Hilal"
+  title="Projects – Yasseen Hilal"
   description="Side projects by Yasseen Hilal, including an AI-powered newsletter pipeline, a CS-student chatbot, and a Discord PDF summarizer."
 >
   <section class="px-6 py-24">
@@ -74,8 +77,7 @@ const projects = [
 
       <Reveal client:load delay={0.1}>
         <p class="mt-6 max-w-[700px] text-[16px] leading-[1.5] text-whiteout/80">
-          Outside of internships, I build things end to end &mdash; mostly AI-powered tools and
-          small backend systems. Here's what I've shipped, newest first.
+          Outside of internships, I build things end to end. Here's what I've shipped, newest first.
         </p>
       </Reveal>
 
