@@ -1,0 +1,92 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import JobEntry from "../components/JobEntry.astro";
+
+const jobs = [
+  {
+    company: "Visa Inc.",
+    role: "Software Engineering Intern",
+    location: "Foster City, CA",
+    dates: "May 2026 – Present",
+    note: "Just started this internship — details to come as the work becomes shareable.",
+  },
+  {
+    company: "UT Project SEED",
+    role: "Software Developer",
+    location: "Austin, TX",
+    dates: "July 2025 – Present",
+    bullets: [
+      "Built a bilingual Whisper NLP pipeline scoring BLEU, BERTScore, and COMET across 40+ linguistic statistics.",
+      "Deployed a production Flask REST API with 4-role role-based access control, validated by 85+ automated tests.",
+      "Built 4 jsPsych cognitive experiments on Firebase, serving 20+ biweekly participants across 4 study variants.",
+      "Automated a multi-cloud audio pipeline (Box, SSH, GCS), cutting processing from 20+ manual steps to 2 commands.",
+    ],
+  },
+  {
+    company: "re:3D Inc.",
+    role: "Software Engineering Intern",
+    location: "Austin, TX",
+    dates: "August 2025 – December 2025",
+    bullets: [
+      "Prototyped a distributed Tailscale network for 3D printers, enabling secure remote SSH access and streamlining operations.",
+      "Optimized the Debian-based OS build pipeline for the Klipper stack with CI/CD.",
+      "Cut build time from days to 30 minutes by caching components and automating Wi-Fi setup, reflashing, and camera installs.",
+      "Built a dual-panel LED UI for real-time printer telemetry, improving visibility and uptime.",
+    ],
+  },
+  {
+    company: "Paycom",
+    role: "Software Development Intern",
+    location: "Irving, TX",
+    dates: "May 2025 – August 2025",
+    bullets: [
+      "Cut snapshot wait times from days to hours for 1,000+ users by building a React queue backed by PHP and MySQL.",
+      "Automated notifications and background tasks with Kafka and Mezzio middleware.",
+      "Logged 100% of queue activity through an auditing service for compliance and analysis.",
+      "Maintained sprint velocity in Agile/Scrum workflows with GitLab CI/CD and Jira, shipping features behind flags.",
+    ],
+  },
+  {
+    company: "re:3D Inc.",
+    role: "Software Engineering Intern",
+    location: "Austin, TX",
+    dates: "January 2025 – May 2025",
+    bullets: [
+      "Boosted error detection 80% by building a Linux toolkit on Raspberry Pi CM4 for large-format 3D printers.",
+      "Cut deployment time 90% with automated over-the-air updates via GitHub sync scripts.",
+      "Improved diagnostics by visualizing bandwidth and system load from printer logs with Plotly dashboards.",
+      "Shipped a company-branded dark/light mode UI built with CSS/JSON.",
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Experience — Software Engineering Internships | Yasseen Hilal"
+  description="Software engineering internship experience at Visa, Paycom, re:3D, and UT Project SEED — building APIs, data pipelines, and infrastructure."
+>
+  <section class="px-6 py-24">
+    <div class="mx-auto max-w-[1150px]">
+      <h1 class="font-control-compressed text-[clamp(2.5rem,7vw,80px)] font-black uppercase leading-[0.95] text-whiteout">
+        Experience
+      </h1>
+
+      <p class="mt-6 max-w-[700px] text-[16px] leading-[1.5] text-whiteout/80">
+        I've spent the last two years interning as a software engineer across fintech, HR tech,
+        and hardware &mdash; from Visa to a 3D-printing startup here in Austin, TX. Here's what
+        I've built at each stop, roughly what a new grad software engineer role would build on.
+      </p>
+
+      <div class="mt-12 flex flex-col gap-6">
+        {jobs.map((job) => <JobEntry {...job} />)}
+      </div>
+
+      <a
+        href="/projects"
+        class="mt-12 inline-block border-b-2 border-signal-blue px-2 pb-1 text-[16px] font-medium text-signal-blue no-underline transition-opacity hover:opacity-80"
+      >
+        Curious what I build on the side? &rarr; Projects
+      </a>
+    </div>
+  </section>
+</BaseLayout>
