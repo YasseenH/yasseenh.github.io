@@ -47,34 +47,22 @@ Just started this internship — details to come as the work becomes shareable.
 ### UT Project SEED — Software Developer
 Austin, TX · July 2025 – Present
 
-- Evaluated bilingual translation quality across 40+ linguistic metrics by building a Whisper NLP pipeline scored with BLEU, BERTScore, and COMET.
-- Secured a production Flask API with 4-role access control, validated by 85+ automated tests.
-- Ran 4 concurrent cognitive-science experiments on Firebase, reaching 20+ participants biweekly.
-- Cut audio processing from 20+ manual steps to 2 commands by automating a multi-cloud pipeline across Box, SSH, and GCS.
+- Built a bilingual Whisper NLP pipeline evaluating translation quality across 40+ linguistic metrics and secured a production Flask API validated by 85+ automated tests.
 
 ### re:3D Inc. — Software Engineering Intern
 Austin, TX · August 2025 – December 2025
 
-- Enabled secure remote access to 3D printers company-wide by prototyping a distributed Tailscale network.
-- Streamlined the Klipper firmware build process by optimizing the Debian-based OS pipeline with CI/CD.
-- Cut printer build time from days to 30 minutes by automating Wi-Fi setup, reflashing, and camera installs.
-- Improved printer uptime by building a dual-panel LED UI for real-time telemetry.
+- Cut printer build time from days to 30 minutes and enabled secure remote access company-wide by automating build steps and prototyping a distributed Tailscale network.
 
 ### Paycom — Software Development Intern
 Irving, TX · May 2025 – August 2025
 
-- Cut data snapshot wait times from days to hours for 1,000+ users by building a React queue backed by PHP and MySQL.
-- Automated background notifications company-wide using Kafka and Mezzio middleware.
-- Ensured full compliance visibility by logging 100% of queue activity through a custom auditing service.
-- Maintained sprint velocity by shipping features behind flags in an Agile/Scrum workflow with GitLab CI/CD and Jira.
+- Cut data snapshot wait times from days to hours for 1,000+ users and automated background notifications company-wide by building a React queue and Kafka-driven middleware.
 
 ### re:3D Inc. — Software Engineering Intern
 Austin, TX · January 2025 – May 2025
 
-- Boosted error detection 80% by building a Linux toolkit on Raspberry Pi CM4 for large-format 3D printers.
-- Cut deployment time 90% with automated over-the-air updates via GitHub sync scripts.
-- Sped up diagnostics by visualizing bandwidth and system load from printer logs in Plotly dashboards.
-- Shipped a company-branded dark/light mode interface using CSS and JSON configuration.
+- Boosted error detection 80% and cut deployment time 90% by building a Linux toolkit and automated over-the-air update pipeline for large-format 3D printers.
 
 ### CTA
 Curious what I build on the side? → **Projects**
@@ -95,9 +83,7 @@ Outside of internships, I build things end to end — mostly AI-powered tools an
 ### Overexplained — AI-Powered Daily Newsletter
 *GCP, React, Express.js, OpenAI, Prisma, Resend* · [GitHub] · [Demo] · 2025
 
-- Delivered personalized newsletters to 10+ subscribers daily using Cloud Run, Pub/Sub, and Cloud Scheduler.
-- Cut OpenAI API costs 50% with a Prisma cache-aside layer for content by topic and date.
-- Improved onboarding reliability with Resend-based email flows and CI/CD pipelines on Vercel and Cloud Build.
+- Delivered personalized newsletters to 10+ subscribers daily and cut OpenAI API costs 50% by building a Cloud Run pipeline with a Prisma cache-aside layer.
 
 ### AI Chatbot for CS Students
 *Next.js, JavaScript, OpenAI API, Vercel* · [GitHub]
