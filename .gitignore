@@ -24,3 +24,5 @@ pnpm-debug.log*
 
 # ruflo local vector store (unrelated to site)
 ruvector.db
+agentdb.rvf
+agentdb.rvf.lock
