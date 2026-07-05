@@ -47,34 +47,34 @@ Just started this internship — details to come as the work becomes shareable.
 ### UT Project SEED — Software Developer
 Austin, TX · July 2025 – Present
 
-- Built a bilingual Whisper NLP pipeline scoring BLEU, BERTScore, and COMET across 40+ linguistic statistics.
-- Deployed a production Flask REST API with 4-role role-based access control, validated by 85+ automated tests.
-- Built 4 jsPsych cognitive experiments on Firebase, serving 20+ biweekly participants across 4 study variants.
-- Automated a multi-cloud audio pipeline (Box, SSH, GCS), cutting processing from 20+ manual steps to 2 commands.
+- Evaluated bilingual translation quality across 40+ linguistic metrics by building a Whisper NLP pipeline scored with BLEU, BERTScore, and COMET.
+- Secured a production Flask API with 4-role access control, validated by 85+ automated tests.
+- Ran 4 concurrent cognitive-science experiments on Firebase, reaching 20+ participants biweekly.
+- Cut audio processing from 20+ manual steps to 2 commands by automating a multi-cloud pipeline across Box, SSH, and GCS.
 
 ### re:3D Inc. — Software Engineering Intern
 Austin, TX · August 2025 – December 2025
 
-- Prototyped a distributed Tailscale network for 3D printers, enabling secure remote SSH access and streamlining operations.
-- Optimized the Debian-based OS build pipeline for the Klipper stack with CI/CD.
-- Cut build time from days to 30 minutes by caching components and automating Wi-Fi setup, reflashing, and camera installs.
-- Built a dual-panel LED UI for real-time printer telemetry, improving visibility and uptime.
+- Enabled secure remote access to 3D printers company-wide by prototyping a distributed Tailscale network.
+- Streamlined the Klipper firmware build process by optimizing the Debian-based OS pipeline with CI/CD.
+- Cut printer build time from days to 30 minutes by automating Wi-Fi setup, reflashing, and camera installs.
+- Improved printer uptime by building a dual-panel LED UI for real-time telemetry.
 
 ### Paycom — Software Development Intern
 Irving, TX · May 2025 – August 2025
 
-- Cut snapshot wait times from days to hours for 1,000+ users by building a React queue backed by PHP and MySQL.
-- Automated notifications and background tasks with Kafka and Mezzio middleware.
-- Logged 100% of queue activity through an auditing service for compliance and analysis.
-- Maintained sprint velocity in Agile/Scrum workflows with GitLab CI/CD and Jira, shipping features behind flags.
+- Cut data snapshot wait times from days to hours for 1,000+ users by building a React queue backed by PHP and MySQL.
+- Automated background notifications company-wide using Kafka and Mezzio middleware.
+- Ensured full compliance visibility by logging 100% of queue activity through a custom auditing service.
+- Maintained sprint velocity by shipping features behind flags in an Agile/Scrum workflow with GitLab CI/CD and Jira.
 
 ### re:3D Inc. — Software Engineering Intern
 Austin, TX · January 2025 – May 2025
 
 - Boosted error detection 80% by building a Linux toolkit on Raspberry Pi CM4 for large-format 3D printers.
 - Cut deployment time 90% with automated over-the-air updates via GitHub sync scripts.
-- Improved diagnostics by visualizing bandwidth and system load from printer logs with Plotly dashboards.
-- Shipped a company-branded dark/light mode UI built with CSS/JSON.
+- Sped up diagnostics by visualizing bandwidth and system load from printer logs in Plotly dashboards.
+- Shipped a company-branded dark/light mode interface using CSS and JSON configuration.
 
 ### CTA
 Curious what I build on the side? → **Projects**
@@ -97,35 +97,32 @@ Outside of internships, I build things end to end — mostly AI-powered tools an
 
 - Delivered personalized newsletters to 10+ subscribers daily using Cloud Run, Pub/Sub, and Cloud Scheduler.
 - Cut OpenAI API costs 50% with a Prisma cache-aside layer for content by topic and date.
-- Improved reliability with Resend-based onboarding flows and CI/CD pipelines on Vercel and Cloud Build.
+- Improved onboarding reliability with Resend-based email flows and CI/CD pipelines on Vercel and Cloud Build.
 
 ### AI Chatbot for CS Students
 *Next.js, JavaScript, OpenAI API, Vercel* · [GitHub]
 
-- Built a context-aware chatbot for CS students with customizable conversation flows.
-- Deployed on Vercel with tuned response generation for fast, relevant answers.
+- Built and deployed a context-aware chatbot for CS students on Vercel, tuning response generation for fast, relevant answers.
 
 ### AI-Powered Discord Bot
 *Python, Discord.py, Gemini API, PyPDF* · [GitHub]
 
-- Built a Discord bot that summarizes PDFs using Google's Gemini API.
-- Automated document processing so users don't have to dig through long files by hand.
+- Built a Discord bot that summarizes PDFs using Google's Gemini API, saving users from digging through long documents by hand.
 
 ### Movie Webscraper & Recommender
 *Java, JSoup, Python, pandas, scikit-learn* · [GitHub]
 
-- Scraped and structured movie data, then built a recommendation model based on user preferences.
+- Built a movie recommendation model by scraping and structuring data based on user preferences.
 
 ### Huffman File Compression System
 *Java, Data Structures & Algorithms*
 
-- Built a Huffman encoding system achieving 40% average file size reduction while preserving data integrity.
-- Added error handling and cross-format compatibility for real-world use.
+- Built a Huffman encoding system that cuts file size 40% on average while preserving data integrity and cross-format compatibility.
 
 ### Connect 4 Game Engine
 *Java, Swing GUI* · [GitHub]
 
-- Built a Connect Four game with a modular architecture and a responsive Java Swing UI.
+- Built a Connect Four game in Java with a modular architecture and a responsive Swing UI.
 
 ### CTA
 Want the technical detail behind the internships? → **Experience**, or reach out → **Contact**
