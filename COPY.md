@@ -42,7 +42,7 @@ I've spent the last two years interning as a software engineer across fintech, H
 ### Visa Inc. — Software Engineering Intern
 Foster City, CA · May 2026 – Present
 
-Just started this internship — details to come as the work becomes shareable.
+- Architected a full-stack mock API simulator with Spring Boot, Vite, and MongoDB, building a custom simulation engine that streamlined local testing for developers.
 
 ### UT Project SEED — Software Developer
 Austin, TX · July 2025 – Present

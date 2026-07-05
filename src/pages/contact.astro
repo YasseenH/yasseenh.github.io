@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Reveal from "../components/motion/Reveal.tsx";
 import ContactLinks from "../components/ContactLinks.tsx";
+import ContactForm from "../components/ContactForm.tsx";
 
 const links = [
   { label: "Email", value: "yasseenhilal@utexas.edu", href: "mailto:yasseenhilal@utexas.edu" },
@@ -26,6 +27,12 @@ const links = [
       </Reveal>
 
       <ContactLinks links={links} client:load />
+
+      <Reveal client:load delay={0.3}>
+        <div class="mt-20">
+          <ContactForm client:load />
+        </div>
+      </Reveal>
     </div>
   </section>
 </BaseLayout>

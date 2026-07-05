@@ -10,18 +10,18 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
 const isActive = (href: string) => (href === "/" ? path === "/" : path.startsWith(href));
 ---
 
-<header id="site-nav" class="sticky top-0 z-50 h-[72px] border-b border-whiteout/10 bg-black-void/90 backdrop-blur transition-[height,background-color,border-color] duration-300">
+<header id="site-nav" class="sticky top-0 z-50 h-[72px] border-b-2 border-signal-blue bg-black-void/90 backdrop-blur transition-[height,background-color,border-color] duration-300">
   <div class="mx-auto flex h-full max-w-[1150px] items-center justify-between px-6">
     <a href="/" class="text-[16px] font-medium text-whiteout no-underline">
       Yasseen Hilal
     </a>
 
-    <nav class="hidden items-center gap-8 sm:flex">
+    <nav class="hidden items-center gap-12 sm:flex">
       {links.map((link) => (
         <a
           href={link.href}
           class:list={[
-            "text-[14px] font-medium no-underline transition-colors",
+            "text-[13px] font-medium uppercase tracking-widest no-underline transition-colors",
             isActive(link.href) ? "text-whiteout" : "text-whiteout/60 hover:text-whiteout",
           ]}
         >
@@ -33,7 +33,7 @@ const isActive = (href: string) => (href === "/" ? path === "/" : path.startsWit
     <div class="flex items-center gap-3">
       <a
         href="/contact"
-        class="hidden rounded-buttons border border-whiteout px-4 py-[10px] text-[14px] font-medium text-whiteout no-underline transition-colors hover:bg-whiteout hover:text-ink sm:inline-block"
+        class="hidden rounded-buttons bg-whiteout px-4.5 py-[10px] text-[14px] font-medium text-ink no-underline transition-opacity hover:opacity-80 sm:inline-block"
       >
         Contact
       </a>
@@ -89,10 +89,8 @@ const isActive = (href: string) => (href === "/" ? path === "/" : path.startsWit
   const setScrolled = (scrolled: boolean) => {
     nav?.classList.toggle("h-[72px]", !scrolled);
     nav?.classList.toggle("bg-black-void/90", !scrolled);
-    nav?.classList.toggle("border-whiteout/10", !scrolled);
     nav?.classList.toggle("h-[60px]", scrolled);
     nav?.classList.toggle("bg-black-void/95", scrolled);
-    nav?.classList.toggle("border-whiteout/20", scrolled);
   };
   setScrolled(window.scrollY > 8);
   window.addEventListener("scroll", () => setScrolled(window.scrollY > 8), { passive: true });
