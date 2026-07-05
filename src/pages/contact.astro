@@ -1,0 +1,31 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Reveal from "../components/motion/Reveal.tsx";
+import ContactLinks from "../components/ContactLinks.tsx";
+
+const links = [
+  { label: "Email", value: "yasseenhilal@utexas.edu", href: "mailto:yasseenhilal@utexas.edu" },
+  { label: "LinkedIn", value: "linkedin.com/in/yasseenhilal", href: "https://linkedin.com/in/yasseenhilal" },
+  { label: "GitHub", value: "github.com/YasseenH", href: "https://github.com/YasseenH" },
+];
+---
+
+<BaseLayout title="Contact – Yasseen Hilal">
+  <section class="px-6 py-24">
+    <div class="mx-auto max-w-[700px]">
+      <Reveal client:load>
+        <h1 class="font-control-compressed text-[clamp(2.5rem,7vw,80px)] font-black uppercase leading-[0.95] text-whiteout">
+          Get in Touch
+        </h1>
+      </Reveal>
+
+      <Reveal client:load delay={0.1}>
+        <p class="mt-8 text-[16px] leading-[1.5] text-whiteout/80">
+          The best way to reach me is email. I'm also on LinkedIn and GitHub.
+        </p>
+      </Reveal>
+
+      <ContactLinks links={links} client:load />
+    </div>
+  </section>
+</BaseLayout>

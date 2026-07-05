@@ -1,0 +1,93 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/ProjectCard.tsx";
+import Reveal from "../components/motion/Reveal.tsx";
+
+const projects = [
+  {
+    name: "Overexplained – AI-Powered Daily Newsletter",
+    stack: "GCP, React, Express.js, OpenAI, Prisma, Resend",
+    year: "2025",
+    links: [
+      { label: "GitHub", href: "https://github.com/YasseenH/overexplained-ai" },
+    ],
+    bullets: [
+      "Built a Cloud Run newsletter pipeline with a Prisma cache-aside layer, delivering personalized content to 10+ subscribers daily while cutting OpenAI API costs 50%.",
+    ],
+  },
+  {
+    name: "AI Chatbot for CS Students",
+    stack: "Next.js, JavaScript, OpenAI API, Vercel",
+    links: [{ label: "GitHub", href: "https://github.com/YasseenH/ai-chatbot" }],
+    bullets: [
+      "Built and deployed a context-aware chatbot for CS students on Vercel, tuning response generation for fast, relevant answers.",
+    ],
+  },
+  {
+    name: "AI-Powered Discord Bot",
+    stack: "Python, Discord.py, Gemini API, PyPDF",
+    links: [{ label: "GitHub", href: "https://github.com/YasseenH/discord-bot" }],
+    bullets: [
+      "Built a Discord bot that summarizes PDFs using Google's Gemini API, saving users from digging through long documents by hand.",
+    ],
+  },
+  {
+    name: "Movie Webscraper & Recommender",
+    stack: "Java, JSoup, Python, pandas, scikit-learn",
+    links: [{ label: "GitHub", href: "https://github.com/YasseenH/movie-scraper" }],
+    bullets: [
+      "Built a movie recommendation model by scraping and structuring data based on user preferences.",
+    ],
+  },
+  {
+    name: "Huffman File Compression System",
+    stack: "Java, Data Structures & Algorithms",
+    bullets: [
+      "Built a Huffman encoding system that cuts file size 40% on average while preserving data integrity and cross-format compatibility.",
+    ],
+  },
+  {
+    name: "Connect 4 Game Engine",
+    stack: "Java, Swing GUI",
+    links: [{ label: "GitHub", href: "https://github.com/YasseenH/connect-4" }],
+    bullets: [
+      "Built a Connect Four game in Java with a modular architecture and a responsive Swing UI.",
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Projects – Yasseen Hilal"
+  description="Side projects by Yasseen Hilal, including an AI-powered newsletter pipeline, a CS-student chatbot, and a Discord PDF summarizer."
+>
+  <section class="px-6 py-24">
+    <div class="mx-auto max-w-[1150px]">
+      <Reveal client:load>
+        <h1 class="font-control-compressed text-[clamp(2.5rem,7vw,80px)] font-black uppercase leading-[0.95] text-whiteout">
+          Projects
+        </h1>
+      </Reveal>
+
+      <Reveal client:load delay={0.1}>
+        <p class="mt-6 max-w-[700px] text-[16px] leading-[1.5] text-whiteout/80">
+          Outside of internships, I build things end to end. Here's what I've shipped, newest first.
+        </p>
+      </Reveal>
+
+      <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
+        {projects.map((project, i) => <ProjectCard {...project} delay={(i % 2) * 0.06} client:visible />)}
+      </div>
+
+      <p class="mt-12 max-w-[700px] text-[16px] leading-[1.5] text-whiteout/80">
+        Want the technical detail behind the internships?
+        <a href="/experience" class="border-b-2 border-signal-blue px-1 pb-0.5 font-medium text-signal-blue no-underline transition-opacity hover:opacity-80">
+          Experience
+        </a>, or reach out
+        <a href="/contact" class="border-b-2 border-signal-blue px-1 pb-0.5 font-medium text-signal-blue no-underline transition-opacity hover:opacity-80">
+          Contact
+        </a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>

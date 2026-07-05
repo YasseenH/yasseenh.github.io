@@ -1,0 +1,29 @@
+---
+interface SkillCategory {
+  label: string;
+  items: string[];
+}
+
+interface Props {
+  categories: SkillCategory[];
+}
+
+const { categories } = Astro.props;
+---
+
+<div class="flex flex-col gap-5">
+  {categories.map((category) => (
+    <div>
+      <p class="mb-2 text-[13px] font-medium uppercase tracking-wide text-whiteout/50">
+        {category.label}
+      </p>
+      <div class="flex flex-wrap gap-2">
+        {category.items.map((item) => (
+          <span class="cursor-default rounded-pills border border-whiteout/15 bg-whiteout/5 px-3 py-1 text-[13px] font-medium text-whiteout/80 transition-all duration-200 ease-out hover:scale-105 hover:border-transparent hover:bg-whiteout hover:text-ink">
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+  ))}
+</div>

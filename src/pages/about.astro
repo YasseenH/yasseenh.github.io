@@ -1,0 +1,82 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Reveal from "../components/motion/Reveal.tsx";
+import SkillsGrid from "../components/SkillsGrid.astro";
+
+const skillCategories = [
+  {
+    label: "Languages",
+    items: ["Java", "Python", "TypeScript", "JavaScript", "C/C++", "SQL", "Bash", "PHP", "HTML/CSS", "ARM Assembly"],
+  },
+  {
+    label: "Frameworks & Libraries",
+    items: [
+      "React",
+      "Next.js",
+      "Node.js",
+      "Flask",
+      "Express.js",
+      "Spring Boot",
+      "FastAPI",
+      "Tailwind CSS",
+      "Bootstrap",
+      "SQLAlchemy",
+      "Doctrine",
+      "pandas",
+      "scikit-learn",
+      "JSoup",
+      "Discord.py",
+    ],
+  },
+  {
+    label: "Databases",
+    items: ["PostgreSQL", "MySQL", "MongoDB", "Firebase", "H2", "SQLite"],
+  },
+  {
+    label: "Tools & Platforms",
+    items: ["Git", "Linux", "Google Cloud", "Docker", "Kubernetes", "Kafka", "Jira", "Postman", "Vercel", "Prisma", "OpenAI API", "CI/CD"],
+  },
+];
+---
+
+<BaseLayout title="About – Yasseen Hilal">
+  <section class="px-6 py-24">
+    <div class="mx-auto max-w-[700px]">
+      <Reveal client:load>
+        <h1 class="font-control-compressed text-[clamp(2.5rem,7vw,80px)] font-black uppercase leading-[0.95] text-whiteout">
+          About
+        </h1>
+      </Reveal>
+
+      <Reveal client:load delay={0.1}>
+        <div class="mt-8 flex flex-col gap-5 text-[16px] leading-[1.5] text-whiteout/80">
+          <p>
+            I'm a Computer Science student at the University of Texas at Austin, Class of 2027,
+            minoring in Entrepreneurship. My coursework covers data structures and algorithms,
+            operating systems, computer architecture, machine learning, cloud computing, agentic
+            software engineering, and data management.
+          </p>
+          <p>
+            I like to build things that ship!
+          </p>
+        </div>
+      </Reveal>
+
+      <Reveal client:load delay={0.2}>
+        <div class="mt-12">
+          <h2 class="mb-6 text-[20px] font-medium text-whiteout">Skills</h2>
+          <SkillsGrid categories={skillCategories} />
+        </div>
+      </Reveal>
+
+      <Reveal client:load delay={0.3}>
+        <a
+          href="/contact"
+          class="mt-10 inline-block border-b-2 border-signal-blue px-2 pb-1 text-[16px] font-medium text-signal-blue no-underline transition-opacity hover:opacity-80"
+        >
+          Get in touch &rarr; Contact
+        </a>
+      </Reveal>
+    </div>
+  </section>
+</BaseLayout>

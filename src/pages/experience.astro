@@ -1,0 +1,83 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import JobEntry from "../components/JobEntry.tsx";
+import Reveal from "../components/motion/Reveal.tsx";
+
+const jobs = [
+  {
+    company: "Visa Inc.",
+    role: "Software Engineering Intern",
+    location: "Foster City, CA",
+    dates: "May 2026 – Present",
+    note: "Just started this internship :)",
+  },
+  {
+    company: "UT Project SEED",
+    role: "Software Developer",
+    location: "Austin, TX",
+    dates: "July 2025 – Present",
+    bullets: [
+      "Built and maintained 5+ research platforms like NLP pipelines using whisper audio transcription and full stack web applications.",
+    ],
+  },
+  {
+    company: "re:3D Inc.",
+    role: "Software Engineering Intern",
+    location: "Austin, TX",
+    dates: "August 2025 – December 2025",
+    bullets: [
+      "Cut printer build time from days to 30 minutes by automating Wi-Fi setup, reflashing, and camera installs.",
+    ],
+  },
+  {
+    company: "Paycom",
+    role: "Software Development Intern",
+    location: "Irving, TX",
+    dates: "May 2025 – August 2025",
+    bullets: [
+      "Cut data snapshot wait times from days to hours for 1,000+ users by building a React queue backed by PHP and MySQL.",
+    ],
+  },
+  {
+    company: "re:3D Inc.",
+    role: "Software Engineering Intern",
+    location: "Austin, TX",
+    dates: "January 2025 – May 2025",
+    bullets: [
+      "Built a Linux toolkit and automated over-the-air update pipeline for large-format 3D printers, boosting error detection 80% and cutting deployment time 90%.",
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Experience – Software Engineering Internships | Yasseen Hilal"
+  description="Software engineering internship experience at Visa, Paycom, re:3D, and UT Project SEED, building APIs, data pipelines, and infrastructure."
+>
+  <section class="px-6 py-24">
+    <div class="mx-auto max-w-[1150px]">
+      <Reveal client:load>
+        <h1 class="font-control-compressed text-[clamp(2.5rem,7vw,80px)] font-black uppercase leading-[0.95] text-whiteout">
+          Experience
+        </h1>
+      </Reveal>
+
+      <Reveal client:load delay={0.1}>
+        <p class="mt-6 max-w-[700px] text-[16px] leading-[1.5] text-whiteout/80">
+          Here's what I've built at each stop:
+        </p>
+      </Reveal>
+
+      <div class="mt-12 flex flex-col gap-6">
+        {jobs.map((job, i) => <JobEntry {...job} delay={i * 0.06} client:visible />)}
+      </div>
+
+      <a
+        href="/projects"
+        class="mt-12 inline-block border-b-2 border-signal-blue px-2 pb-1 text-[16px] font-medium text-signal-blue no-underline transition-opacity hover:opacity-80"
+      >
+        Curious what I build on the side? &rarr; Projects
+      </a>
+    </div>
+  </section>
+</BaseLayout>
