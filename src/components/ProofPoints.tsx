@@ -26,7 +26,7 @@ const item = {
 export default function ProofPoints({ points }: Props) {
   return (
     <motion.ul
-      className="mt-10 flex max-w-[700px] flex-col gap-3"
+      className="mt-6 flex max-w-[700px] flex-col gap-3"
       initial="hidden"
       animate="show"
       variants={container}
