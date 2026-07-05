@@ -47,22 +47,22 @@ Just started this internship — details to come as the work becomes shareable.
 ### UT Project SEED — Software Developer
 Austin, TX · July 2025 – Present
 
-- Built a bilingual Whisper NLP pipeline evaluating translation quality across 40+ linguistic metrics and secured a production Flask API validated by 85+ automated tests.
+- Built a bilingual Whisper NLP pipeline evaluating translation quality across 40+ linguistic metrics, backed by a production Flask API validated by 85+ automated tests.
 
 ### re:3D Inc. — Software Engineering Intern
 Austin, TX · August 2025 – December 2025
 
-- Cut printer build time from days to 30 minutes and enabled secure remote access company-wide by automating build steps and prototyping a distributed Tailscale network.
+- Cut printer build time from days to 30 minutes by automating Wi-Fi setup, reflashing, and camera installs remotely over a distributed Tailscale network.
 
 ### Paycom — Software Development Intern
 Irving, TX · May 2025 – August 2025
 
-- Cut data snapshot wait times from days to hours for 1,000+ users and automated background notifications company-wide by building a React queue and Kafka-driven middleware.
+- Cut data snapshot wait times from days to hours for 1,000+ users by building a React queue backed by PHP and MySQL.
 
 ### re:3D Inc. — Software Engineering Intern
 Austin, TX · January 2025 – May 2025
 
-- Boosted error detection 80% and cut deployment time 90% by building a Linux toolkit and automated over-the-air update pipeline for large-format 3D printers.
+- Built a Linux toolkit and automated over-the-air update pipeline for large-format 3D printers, boosting error detection 80% and cutting deployment time 90%.
 
 ### CTA
 Curious what I build on the side? → **Projects**
@@ -83,7 +83,7 @@ Outside of internships, I build things end to end — mostly AI-powered tools an
 ### Overexplained — AI-Powered Daily Newsletter
 *GCP, React, Express.js, OpenAI, Prisma, Resend* · [GitHub] · [Demo] · 2025
 
-- Delivered personalized newsletters to 10+ subscribers daily and cut OpenAI API costs 50% by building a Cloud Run pipeline with a Prisma cache-aside layer.
+- Built a Cloud Run newsletter pipeline with a Prisma cache-aside layer, delivering personalized content to 10+ subscribers daily while cutting OpenAI API costs 50%.
 
 ### AI Chatbot for CS Students
 *Next.js, JavaScript, OpenAI API, Vercel* · [GitHub]
