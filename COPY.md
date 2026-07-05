@@ -47,12 +47,12 @@ Just started this internship — details to come as the work becomes shareable.
 ### UT Project SEED — Software Developer
 Austin, TX · July 2025 – Present
 
-- Built a bilingual Whisper NLP pipeline evaluating translation quality across 40+ linguistic metrics, backed by a production Flask API validated by 85+ automated tests.
+- Built and maintained 5+ research platforms like NLP pipelines using whisper audio transcription and full stack web applications.
 
 ### re:3D Inc. — Software Engineering Intern
 Austin, TX · August 2025 – December 2025
 
-- Cut printer build time from days to 30 minutes by automating Wi-Fi setup, reflashing, and camera installs remotely over a distributed Tailscale network.
+- Cut printer build time from days to 30 minutes by automating Wi-Fi setup, reflashing, and camera installs.
 
 ### Paycom — Software Development Intern
 Irving, TX · May 2025 – August 2025
