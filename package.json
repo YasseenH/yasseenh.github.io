@@ -7,7 +7,8 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/inject-csp.mjs",
+    "test": "node --experimental-strip-types --test tests/tennis.test.ts tests/tennis-input.test.ts tests/background.test.ts",
+    "build": "npm test && astro build && node scripts/inject-csp.mjs && node --test tests/rendering.test.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },

@@ -10,7 +10,7 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
 const isActive = (href: string) => (href === "/" ? path === "/" : path.startsWith(href));
 ---
 
-<header id="site-nav" class="sticky top-0 z-50 h-[72px] border-b-2 border-signal-blue bg-black-void/90 backdrop-blur transition-[height,background-color,border-color] duration-300">
+<header id="site-nav" class="sticky top-0 z-50 h-[72px] border-b border-whiteout/10 bg-black-void/90 backdrop-blur transition-[height,background-color,border-color] duration-300">
   <div class="mx-auto flex h-full max-w-[1150px] items-center justify-between px-6">
     <a href="/" class="text-[16px] font-medium text-whiteout no-underline">
       Yasseen Hilal
@@ -20,6 +20,7 @@ const isActive = (href: string) => (href === "/" ? path === "/" : path.startsWit
       {links.map((link) => (
         <a
           href={link.href}
+          aria-current={isActive(link.href) ? "page" : undefined}
           class:list={[
             "text-[13px] font-medium uppercase tracking-widest no-underline transition-colors",
             isActive(link.href) ? "text-whiteout" : "text-whiteout/60 hover:text-whiteout",
@@ -43,6 +44,7 @@ const isActive = (href: string) => (href === "/" ? path === "/" : path.startsWit
         type="button"
         aria-label="Toggle menu"
         aria-expanded="false"
+        aria-controls="nav-mobile"
         class="flex h-9 w-9 items-center justify-center rounded-buttons bg-whiteout text-ink sm:hidden"
       >
         <span class="sr-only">Menu</span>
@@ -53,10 +55,11 @@ const isActive = (href: string) => (href === "/" ? path === "/" : path.startsWit
   </div>
 </header>
 
-<nav id="nav-mobile" class="fixed inset-x-0 top-[72px] bottom-0 z-40 hidden flex-col justify-center gap-1 bg-black-void px-6 sm:hidden">
+<nav id="nav-mobile" aria-label="Mobile navigation" class="fixed inset-x-0 top-[72px] bottom-0 z-40 hidden flex-col justify-center gap-1 bg-black-void px-6 sm:hidden">
   {links.map((link) => (
     <a
       href={link.href}
+      aria-current={isActive(link.href) ? "page" : undefined}
       class:list={[
         "py-3 text-[22px] font-medium uppercase tracking-widest no-underline",
         isActive(link.href) ? "text-whiteout" : "text-whiteout/60",
@@ -79,15 +82,43 @@ const isActive = (href: string) => (href === "/" ? path === "/" : path.startsWit
   const iconOpen = document.getElementById("nav-icon-open");
   const iconClose = document.getElementById("nav-icon-close");
 
+  const setMenu = (open: boolean) => {
+    menu?.classList.toggle("hidden", !open);
+    menu?.classList.toggle("flex", open);
+    iconOpen?.classList.toggle("hidden", open);
+    iconClose?.classList.toggle("hidden", !open);
+    toggle?.setAttribute("aria-expanded", String(open));
+    document.body.classList.toggle("overflow-hidden", open);
+    document.querySelectorAll<HTMLElement>("main, footer").forEach((el) => { el.inert = open; });
+  };
   toggle?.addEventListener("click", () => {
-    const isOpen = menu?.classList.contains("flex");
-    menu?.classList.toggle("hidden", isOpen);
-    menu?.classList.toggle("flex", !isOpen);
-    iconOpen?.classList.toggle("hidden", !isOpen);
-    iconClose?.classList.toggle("hidden", isOpen);
-    toggle?.setAttribute("aria-expanded", String(!isOpen));
-    document.body.classList.toggle("overflow-hidden", !isOpen);
+    const open = toggle.getAttribute("aria-expanded") !== "true";
+    setMenu(open);
+    if (open) menu?.querySelector<HTMLAnchorElement>("a")?.focus();
   });
+  document.addEventListener("keydown", (event) => {
+    if (toggle?.getAttribute("aria-expanded") !== "true") return;
+    if (event.key === "Escape") {
+      setMenu(false);
+      toggle.focus();
+    }
+    if (event.key === "Tab") {
+      const links = menu?.querySelectorAll<HTMLAnchorElement>("a");
+      if (!links?.length) return;
+      const current = document.activeElement;
+      if (event.shiftKey && current === links[0]) {
+        event.preventDefault();
+        toggle.focus();
+      } else if (!event.shiftKey && (current === links[links.length - 1] || current === toggle)) {
+        event.preventDefault();
+        (current === toggle ? links[0] : toggle).focus();
+      } else if (event.shiftKey && current === toggle) {
+        event.preventDefault();
+        links[links.length - 1].focus();
+      }
+    }
+  });
+  matchMedia("(min-width: 640px)").addEventListener("change", () => setMenu(false));
 
   const nav = document.getElementById("site-nav");
   const setScrolled = (scrolled: boolean) => {

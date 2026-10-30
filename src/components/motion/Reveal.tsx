@@ -1,5 +1,4 @@
-import { motion } from "framer-motion";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 interface Props {
   children: ReactNode;
@@ -8,18 +7,20 @@ interface Props {
   y?: number;
 }
 
-const EASE_OUT_EXPO: [number, number, number, number] = [0.16, 1, 0.3, 1];
-
-export default function Reveal({ children, delay = 0, className, y = 20 }: Props) {
+export default function Reveal({
+  children,
+  delay = 0,
+  className,
+  y = 20,
+}: Props) {
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-10% 0px" }}
-      transition={{ duration: 0.6, delay, ease: EASE_OUT_EXPO }}
+    <div
+      className={`reveal-entry ${className ?? ""}`}
+      style={
+        { animationDelay: `${delay}s`, "--reveal-y": `${y}px` } as CSSProperties
+      }
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

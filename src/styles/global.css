@@ -49,3 +49,514 @@
     line-height: 1.5;
   }
 }
+
+@layer base {
+  :focus-visible {
+    outline: 2px solid #83b2ff;
+    outline-offset: 5px;
+  }
+  button {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: default;
+    opacity: 0.4;
+  }
+  ::selection {
+    background: #2b7fff;
+    color: white;
+  }
+}
+
+.home-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: calc(100dvh - 72px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 88px max(24px, calc((100vw - 1102px) / 2)) 0;
+  background: #080b10;
+}
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 64px;
+  align-items: center;
+  width: 100%;
+  margin: auto 0;
+  padding-bottom: 64px;
+}
+.hero-intro {
+  color: #a6b2c2;
+  font-size: 15px;
+  margin-bottom: 28px;
+}
+.hero-name {
+  font-family: var(--font-control-compressed);
+  font-weight: 400;
+  font-size: clamp(80px, 9.5vw, 136px);
+  line-height: 0.96;
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+}
+.hero-name > span {
+  display: block;
+}
+.name-period {
+  color: #6b9bdc;
+}
+.hero-description {
+  max-width: 470px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #adb5c2;
+  margin-top: 28px;
+}
+.portrait-wrap {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  max-width: 340px;
+  justify-self: end;
+}
+.portrait-glow {
+  position: absolute;
+  inset: -32px;
+  z-index: -1;
+  border-radius: 50%;
+  background: #42618833;
+  filter: blur(48px);
+  pointer-events: none;
+}
+.portrait-frame {
+  aspect-ratio: 6 / 7;
+  overflow: hidden;
+  border-radius: 11px;
+  border: 1px solid #ffffff26;
+  box-shadow: 0 30px 80px -20px #ffffff2e;
+}
+.portrait-frame img {
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transform: scale(1.2);
+  transform-origin: 50% 65%;
+}
+.hero-bottom {
+  border-top: 1px solid #ffffff16;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 26px 0;
+  color: #9aa5b5;
+  font-size: 12px;
+}
+.hero-bottom > p span {
+  display: block;
+  color: #697889;
+  margin-top: 5px;
+}
+.hero-effect { position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(ellipse at 75% 45%, #17345533, transparent 75%); mask-image: linear-gradient(transparent, #000 10%, #000 85%, transparent); }
+.hero-effect canvas { display: block; width: 100%; height: 100%; }
+.hero-effect:not([data-ready])::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(#6994c61a 1px, transparent 1px), linear-gradient(90deg, #6994c61a 1px, transparent 1px); background-size: 52px 52px; }
+@keyframes reveal-entry {
+  from {
+    opacity: 0;
+    transform: translateY(var(--reveal-y, 18px));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.reveal-entry {
+  animation: reveal-entry 0.65s backwards cubic-bezier(0.16, 1, 0.3, 1);
+}
+#site-nav nav a {
+  position: relative;
+}
+#site-nav nav a::after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  background: #83b2ff;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+#site-nav nav a:hover::after,
+#site-nav nav a[aria-current]::after {
+  transform: scaleX(1);
+}
+.tennis-discovery {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+.tennis-ball {
+  display: block;
+  position: relative;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  background: #c5d997;
+  overflow: hidden;
+  transition: transform 0.5s;
+  flex-shrink: 0;
+}
+.tennis-ball::before,
+.tennis-ball::after {
+  content: "";
+  position: absolute;
+  height: 24px;
+  width: 18px;
+  border: 1px solid #f4f8dd;
+  border-radius: 50%;
+  top: -2px;
+  left: -12px;
+}
+.tennis-ball::after {
+  left: 15px;
+}
+.tennis-discovery:hover .tennis-ball {
+  transform: rotate(100deg) translateY(-3px);
+}
+.tennis-dialog {
+  position: fixed;
+  inset: 0;
+  margin: 0;
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  background: #081625;
+  color: #edf2f6;
+}
+.tennis-dialog::backdrop {
+  background: #081625;
+}
+.tennis-dialog[open] {
+  animation: court-enter 0.3s ease-out;
+}
+.tennis-dialog canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+.tennis-dialog canvas:focus-visible {
+  outline: 1px solid #82a9cc;
+  outline-offset: -3px;
+}
+.court-score {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  overflow: hidden;
+  border-radius: 3px;
+  border: 1px solid #ffffff16;
+  background: #132435;
+  pointer-events: none;
+}
+.court-score table {
+  border-collapse: collapse;
+}
+.court-score th {
+  min-width: 100px;
+  padding: 7px 12px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f1f5f8;
+}
+.court-score td {
+  min-width: 40px;
+  padding: 4px 10px;
+  text-align: center;
+  background: #d5e7aa;
+  color: #18291e;
+  font-size: 18px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+.court-score tr + tr th {
+  border-top: 1px solid #ffffff12;
+}
+.court-score tr + tr td {
+  border-top: 1px solid #18291e20;
+}
+.server-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-right: 12px;
+  margin-bottom: 2px;
+  border-radius: 50%;
+  background: #d5e7aa;
+}
+.server-dot.is-receiver {
+  background: transparent;
+}
+.serve-prompt {
+  position: absolute;
+  left: 50%;
+  top: var(--serve-y, 73%);
+  transform: translateX(-50%);
+  padding: 10px 16px;
+  border-radius: 4px;
+  background: #0c2134e8;
+  color: #d7e5ee;
+  font-size: 12px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.court-controls {
+  position: absolute;
+  z-index: 3;
+  top: 24px;
+  left: 24px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.court-controls button {
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  font-size: 12px;
+  color: #b0c2d2;
+  transition:
+    color 0.2s,
+    background 0.2s;
+}
+.court-controls button:hover {
+  color: white;
+  background: #ffffff0b;
+}
+.court-keybinds {
+  display: flex;
+  gap: 14px;
+  padding-right: 8px;
+  color: #9eb3c6;
+  font-size: 11px;
+}
+.court-keybinds > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.court-keybinds kbd {
+  display: inline-grid;
+  place-items: center;
+  min-width: 23px;
+  height: 23px;
+  border: 1px solid #a5bbcf35;
+  border-radius: 3px;
+  font-family: inherit;
+  font-size: 11px;
+}
+.court-keybinds [data-active="true"] {
+  color: #d5e7aa;
+}
+.court-keybinds [data-active="true"] kbd {
+  border-color: #d5e7aa88;
+  background: #d5e7aa12;
+}
+.court-touch-shots,
+.court-touch-hint {
+  display: none;
+}
+.court-touch-shots button[aria-pressed="true"] {
+  color: #d5e7aa;
+  background: #d5e7aa12;
+}
+.court-controls > button:last-child {
+  font-size: 24px;
+  line-height: 1;
+  margin-left: 8px;
+}
+.umpire-call {
+  position: absolute;
+  top: var(--umpire-y, 50%);
+  left: var(--umpire-x, 80%);
+  width: 104px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.umpire-call strong {
+  display: block;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+.umpire-call span {
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
+  line-height: 1.5;
+  color: #a8bdcf;
+}
+.court-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: #061321aa;
+  text-align: center;
+}
+.court-overlay > div {
+  max-width: 440px;
+}
+.court-overlay h2 {
+  font-family: var(--font-control-compressed);
+  font-weight: 400;
+  font-size: clamp(40px, 6vw, 64px);
+  line-height: 1.1;
+}
+.court-overlay p {
+  margin-top: 18px;
+  font-size: 12px;
+  line-height: 1.8;
+  color: #b0c2d2;
+}
+.court-overlay .court-help {
+  color: #a2b3c4;
+}
+.court-play {
+  display: inline-flex;
+  gap: 32px;
+  align-items: center;
+  margin-top: 28px;
+  padding: 12px 0;
+  border-bottom: 1px solid #9bb9d4;
+  font-size: 13px;
+  color: #f0f4f8;
+  transition: gap 0.25s;
+}
+.court-play:hover {
+  gap: 42px;
+}
+.court-play span {
+  font-size: 20px;
+  color: #9bb9d4;
+}
+@keyframes court-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (max-width: 600px) {
+  .court-score {
+    top: 70px;
+    right: 14px;
+  }
+  .court-score th {
+    min-width: 90px;
+    padding: 6px 10px;
+    font-size: 10px;
+  }
+  .court-score td {
+    min-width: 36px;
+    padding: 3px 8px;
+    font-size: 17px;
+  }
+  .court-controls {
+    top: 15px;
+    left: 14px;
+    gap: 0;
+  }
+  .court-keybinds {
+    gap: 10px;
+  }
+  .court-controls button {
+    padding: 9px;
+    font-size: 11px;
+  }
+  .court-controls > button:last-child {
+    margin-left: 0;
+  }
+  .umpire-call {
+    width: 64px;
+  }
+  .umpire-call strong {
+    font-size: 14px;
+  }
+  .umpire-call span {
+    font-size: 10px;
+  }
+}
+@media (pointer: coarse), (max-width: 600px) {
+  .court-keybinds,
+  .court-mouse-hint {
+    display: none;
+  }
+  .court-touch-shots {
+    display: flex;
+  }
+  .court-touch-hint {
+    display: inline;
+  }
+  .court-controls button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+@media (max-width: 767px) {
+  .home-hero {
+    padding-top: 48px;
+  }
+  .hero-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-bottom: 40px;
+  }
+  .hero-name {
+    font-size: clamp(74px, 19vw, 110px);
+  }
+  .hero-intro {
+    font-size: 13px;
+    margin-bottom: 22px;
+  }
+  .hero-description {
+    margin-top: 22px;
+    font-size: 14px;
+  }
+  .portrait-wrap {
+    justify-self: center;
+    max-width: 280px;
+  }
+  .hero-bottom {
+    align-items: flex-start;
+    font-size: 10px;
+    gap: 16px;
+  }
+
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

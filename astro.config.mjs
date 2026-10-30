@@ -11,6 +11,8 @@ export default defineConfig({
   integrations: [react(), sitemap()],
 
   vite: {
+    // Keep build optimization from invalidating a running development preview.
+    cacheDir: `node_modules/.vite-${process.env.NODE_ENV === "production" ? "production" : "development"}`,
     plugins: [tailwindcss()]
   }
 });
