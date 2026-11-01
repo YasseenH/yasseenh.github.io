@@ -62,7 +62,7 @@ portrait render visibly before hydration, so an interrupted client script does
 not hide the homepage.
 
 ```bash
-npm test          # rules, motion, desktop/touch input, and multi-touch UI tests (Node 22.12+)
+npm test          # rules, motion, desktop/touch input, and multi-touch UI tests (Node 22.13+ or 24+)
 npm run build     # game/input tests, production build, CSP injection, rendering checks
 npm run preview   # serve the production output locally
 ```
