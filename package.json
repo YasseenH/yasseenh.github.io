@@ -3,11 +3,11 @@
   "type": "module",
   "version": "0.0.1",
   "engines": {
-    "node": ">=22.12.0"
+    "node": "^22.13.0 || >=24.0.0"
   },
   "scripts": {
     "dev": "astro dev",
-    "test": "node --experimental-strip-types --test tests/tennis.test.ts tests/tennis-input.test.ts tests/background.test.ts",
+    "test": "node --experimental-strip-types --test tests/tennis.test.ts tests/tennis-input.test.ts tests/background.test.ts && NODE_ENV=test node --import tsx --test tests/tennis-controls.test.mjs",
     "build": "npm test && astro build && node scripts/inject-csp.mjs && node --test tests/rendering.test.mjs",
     "preview": "astro preview",
     "astro": "astro"
@@ -23,5 +23,9 @@
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "tailwindcss": "^4.3.2"
+  },
+  "devDependencies": {
+    "jsdom": "^29.1.1",
+    "tsx": "^4.23.15"
   }
 }

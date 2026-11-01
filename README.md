@@ -46,8 +46,13 @@ The compact two-row broadcast score sits at the top right and marks you as the
 server. Spectators fill the outer stands, and racket branding sits on the grips.
 One game uses 0/15/30/40 scoring, deuce, advantage, and a two-point winning margin.
 
-On touchscreens, drag to move, double-tap to serve, and use the Drop/Lob controls.
-Single taps and drags do not serve. Arrow keys also move the racket. P pauses and Escape closes
+On devices with a primary touch pointer, a left thumbstick moves the racket and
+a right shot pad selects Drive, Drop, or Lob. Tap Serve to start a point. The stick
+uses a resting dead zone and a gentle response curve for fine adjustments.
+Court dragging and double-tap serving also work; single court taps never serve.
+The controller sits outside play and supports separate movement and shot touches.
+On desktop, the tennis ball shows a translucent “Click me” speech bubble only
+while the mouse hovers over it. Arrow keys also move the racket. P pauses and Escape closes
 the game. The ? button shows controls.
 Switching away pauses play; Resume continues it. Reopening an unfinished rally
 also waits for Resume.
@@ -57,7 +62,7 @@ portrait render visibly before hydration, so an interrupted client script does
 not hide the homepage.
 
 ```bash
-npm test          # game rules, scoring, and background motion tests (Node 22.12+)
+npm test          # rules, motion, desktop/touch input, and multi-touch UI tests (Node 22.13+ or 24+)
 npm run build     # game/input tests, production build, CSP injection, rendering checks
 npm run preview   # serve the production output locally
 ```

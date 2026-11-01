@@ -9,13 +9,16 @@ import {
   type Shot,
 } from "../lib/tennis";
 import { courtView, drawCourt } from "../lib/tennis-canvas";
-import { finishTouch } from "../lib/tennis-input";
+import { finishTouch, thumbstick } from "../lib/tennis-input";
 
 export default function TennisEgg() {
   const dialog = useRef<HTMLDialogElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
   const game = useRef(createGame());
   const touch = useRef({ x: 0, y: 0, at: 0, lastX: 0, lastY: 0 });
+  const stick = useRef({ x: 0, y: 0, pointer: -1 });
+  const stickPad = useRef<HTMLDivElement>(null);
+  const [touchControls, setTouchControls] = useState(false);
   const [open, setOpen] = useState(false);
   const [paused, setPaused] = useState(false);
   const [help, setHelp] = useState(false);
@@ -23,7 +26,24 @@ export default function TennisEgg() {
   const [view, setView] = useState({ ...game.current });
 
   useEffect(() => {
+    const media = matchMedia("(pointer: coarse)");
+    const sync = () => setTouchControls(media.matches);
+    sync();
+    media.addEventListener("change", sync);
+    return () => media.removeEventListener("change", sync);
+  }, []);
+
+  const releaseStick = () => {
+    stick.current = { x: 0, y: 0, pointer: -1 };
+    stickPad.current?.style.setProperty("--stick-x", "0px");
+    stickPad.current?.style.setProperty("--stick-y", "0px");
+    game.current.moveX = game.current.playerX;
+    game.current.moveY = game.current.playerY;
+  };
+
+  useEffect(() => {
     if (!open) return;
+    releaseStick();
     const el = canvas.current!;
     const ctx = el.getContext("2d")!;
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -33,7 +53,7 @@ export default function TennisEgg() {
       el.width = Math.round(rect.width * ratio);
       el.height = Math.round(rect.height * ratio);
       ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-      const v = courtView(rect.width, rect.height);
+      const v = courtView(rect.width, rect.height, touchControls);
       dialog.current?.style.setProperty(
         "--serve-y",
         `${v.y + 740 * v.scale}px`,
@@ -56,10 +76,24 @@ export default function TennisEgg() {
       previous = "";
     const tick = (now: number) => {
       const g = game.current;
-      if (!paused && !help && !document.hidden && document.hasFocus())
-        step(g, last ? Math.min((now - last) / 1000, 0.04) : 0);
+      const dt = last ? Math.min((now - last) / 1000, 0.04) : 0;
+      if (!paused && !help && !document.hidden && document.hasFocus()) {
+        if (stick.current.pointer !== -1) {
+          g.moveX = clamp(g.playerX + stick.current.x * 400 * dt, 210, 690);
+          if (g.phase === "rally")
+            g.moveY = clamp(g.playerY + stick.current.y * 400 * dt, 550, 890);
+        }
+        step(g, dt);
+      }
       last = now;
-      drawCourt(ctx, g, el.clientWidth, el.clientHeight, reduced);
+      drawCourt(
+        ctx,
+        g,
+        el.clientWidth,
+        el.clientHeight,
+        reduced,
+        touchControls,
+      );
       const key = `${g.you}/${g.cpu}/${g.phase}/${g.rally}`;
       if (key !== previous) {
         previous = key;
@@ -85,7 +119,7 @@ export default function TennisEgg() {
       document.removeEventListener("visibilitychange", visibility);
       document.body.style.overflow = overflow;
     };
-  }, [open, paused, help]);
+  }, [open, paused, help, touchControls]);
 
   const chooseShot = (kind: Shot) => {
     game.current.selected = kind;
@@ -111,7 +145,13 @@ export default function TennisEgg() {
   const move = (event: React.PointerEvent<HTMLCanvasElement>) => {
     if (!event.isPrimary) return;
     const rect = event.currentTarget.getBoundingClientRect();
-    const v = courtView(rect.width, rect.height);
+    if (
+      event.pointerType === "touch" &&
+      event.type === "pointermove" &&
+      !event.buttons
+    )
+      return;
+    const v = courtView(rect.width, rect.height, touchControls);
     game.current.moveX = clamp(
       (event.clientX - rect.left - v.x) / v.scale,
       210,
@@ -124,12 +164,24 @@ export default function TennisEgg() {
         890,
       );
   };
+  const moveStick = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (stick.current.pointer !== event.pointerId) return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    const radius = rect.width * 0.32;
+    const dx = event.clientX - rect.left - rect.width / 2;
+    const dy = event.clientY - rect.top - rect.height / 2;
+    const axes = thumbstick(dx, dy, radius);
+    const travel = radius / Math.max(radius, Math.hypot(dx, dy));
+    stick.current.x = axes.x;
+    stick.current.y = axes.y;
+    event.currentTarget.style.setProperty("--stick-x", `${dx * travel}px`);
+    event.currentTarget.style.setProperty("--stick-y", `${dy * travel}px`);
+  };
   return (
     <>
       <button
         className="tennis-discovery"
         aria-label="Play a hidden game of tennis"
-        title="Play tennis"
         onClick={() => {
           if (game.current.phase === "ready") {
             prepareServe(game.current);
@@ -141,15 +193,19 @@ export default function TennisEgg() {
         }}
       >
         <span className="tennis-ball" aria-hidden="true" />
+        <span className="tennis-tooltip" aria-hidden="true">
+          Click me
+        </span>
       </button>
       <dialog
         ref={dialog}
-        className="tennis-dialog"
+        className={`tennis-dialog${touchControls ? " has-touch-controls" : ""}`}
         aria-label="One more rally. Tennis against the CPU."
         onClose={() => {
           setOpen(false);
           setHelp(false);
           touch.current.at = 0;
+          releaseStick();
         }}
       >
         <canvas
@@ -262,20 +318,6 @@ export default function TennisEgg() {
             </span>
             <span className="sr-only">Selected shot: {selected}</span>
           </div>
-          <div className="court-touch-shots" aria-label="Touch shot selection">
-            <button
-              aria-pressed={selected === "drop"}
-              onClick={() => chooseShot(selected === "drop" ? "drive" : "drop")}
-            >
-              Drop
-            </button>
-            <button
-              aria-pressed={selected === "lob"}
-              onClick={() => chooseShot(selected === "lob" ? "drive" : "lob")}
-            >
-              Lob
-            </button>
-          </div>
           <button
             aria-label={paused ? "Resume tennis" : "Pause tennis"}
             disabled={view.phase !== "rally"}
@@ -297,6 +339,91 @@ export default function TennisEgg() {
             ×
           </button>
         </div>
+        {touchControls && (
+          <div className="court-gamepad" aria-label="Mobile controller">
+            <div className="court-stick-wrap">
+              <span className="court-pad-label">Move</span>
+              <div
+                ref={stickPad}
+                className="court-thumbstick"
+                role="group"
+                aria-label="Movement joystick. Drag in any direction to move your racket."
+                aria-disabled={paused || help || view.phase === "over"}
+                onPointerDown={(event) => {
+                  if (
+                    paused ||
+                    help ||
+                    view.phase === "over" ||
+                    stick.current.pointer !== -1
+                  )
+                    return;
+                  event.preventDefault();
+                  stick.current.pointer = event.pointerId;
+                  event.currentTarget.setPointerCapture(event.pointerId);
+                  moveStick(event);
+                }}
+                onPointerMove={moveStick}
+                onPointerUp={(event) => {
+                  if (stick.current.pointer === event.pointerId) releaseStick();
+                }}
+                onPointerCancel={releaseStick}
+                onLostPointerCapture={releaseStick}
+                onContextMenu={(event) => event.preventDefault()}
+              >
+                <span className="court-stick-cross" aria-hidden="true">
+                  ✛
+                </span>
+                <span className="court-stick-knob" aria-hidden="true" />
+              </div>
+            </div>
+            <div
+              className="court-shot-pad"
+              role="group"
+              aria-label="Touch shot selection"
+            >
+              <span className="court-pad-label">Shots</span>
+              <div>
+                {(["drop", "lob", "drive"] as const).map((shot) => (
+                  <button
+                    key={shot}
+                    disabled={paused || help || view.phase === "over"}
+                    aria-pressed={selected === shot}
+                    onPointerDown={(event) => {
+                      if (paused || help || view.phase === "over") return;
+                      event.preventDefault();
+                      chooseShot(selected === shot ? "drive" : shot);
+                    }}
+                    onClick={(event) => {
+                      if (event.detail === 0)
+                        chooseShot(selected === shot ? "drive" : shot);
+                    }}
+                  >
+                    {shot === "drop"
+                      ? "Drop"
+                      : shot === "lob"
+                        ? "Lob"
+                        : "Drive"}
+                  </button>
+                ))}
+                <button
+                  className="court-serve"
+                  disabled={view.phase !== "serve" || paused || help}
+                  onPointerDown={(event) => {
+                    if (!paused && !help) {
+                      event.preventDefault();
+                      start();
+                    }
+                  }}
+                  onClick={(event) => {
+                    if (event.detail === 0) start();
+                  }}
+                >
+                  Serve <span aria-hidden="true">↗</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
         {view.phase === "serve" && !paused && !help && (
           <p className="serve-prompt">
             <span className="court-mouse-hint">Double-click</span>
@@ -330,18 +457,22 @@ export default function TennisEgg() {
                     Double-click to serve. D for drop shots. L for lobs.
                   </span>
                   <span className="court-touch-hint">
-                    Double-tap to serve. Drag to move. Tap Drop or Lob to change
-                    your shot.
+                    Left thumb moves. Right thumb chooses Drive, Drop, or Lob.
+                    Tap Serve to start each point. Court dragging and double-tap
+                    serving also work.
                   </span>
                 </p>
               )}
               {help && (
                 <p className="court-help">
                   Move forward to pick up short balls. Hit off-center to find an
-                  angle. Press D or L again to return to a normal drive.
-                  <br />
-                  Mouse moves your racket. Arrow keys also work. Enter is the
-                  keyboard alternative to double-clicking.
+                  angle.{" "}
+                  <span className="court-mouse-hint">
+                    Press D or L again to return to a normal drive.
+                    <br />
+                    Mouse moves your racket. Arrow keys also work. Enter is the
+                    keyboard alternative to double-clicking.
+                  </span>
                 </p>
               )}
               <button
