@@ -424,6 +424,7 @@
   right: max(16px, env(safe-area-inset-right));
   bottom: calc(14px + env(safe-area-inset-bottom));
   display: flex;
+  flex-direction: row-reverse;
   justify-content: space-between;
   align-items: flex-end;
   pointer-events: none;
@@ -473,7 +474,7 @@
   transform: translate(var(--stick-x, 0px), var(--stick-y, 0px));
   pointer-events: none;
 }
-.court-shot-pad { width: 128px; text-align: right; }
+.court-shot-pad { width: 128px; text-align: left; }
 .court-shot-pad > div { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .court-shot-pad button {
   min-height: 46px;
