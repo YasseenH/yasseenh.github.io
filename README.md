@@ -46,8 +46,8 @@ The compact two-row broadcast score sits at the top right and marks you as the
 server. Spectators fill the outer stands, and racket branding sits on the grips.
 One game uses 0/15/30/40 scoring, deuce, advantage, and a two-point winning margin.
 
-On devices with a primary touch pointer, a left thumbstick moves the racket and
-a right shot pad selects Drive, Drop, or Lob. Tap Serve to start a point. The stick
+On devices with a primary touch pointer, a right thumbstick moves the racket and
+a left shot pad selects Drive, Drop, or Lob. Tap Serve to start a point. The stick
 uses a resting dead zone and a gentle response curve for fine adjustments.
 Court dragging and double-tap serving also work; single court taps never serve.
 The controller sits outside play and supports separate movement and shot touches.

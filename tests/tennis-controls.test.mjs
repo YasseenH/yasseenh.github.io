@@ -71,7 +71,7 @@ test("desktop and multi-touch controller interactions", async (t) => {
   window.HTMLElement.prototype.getBoundingClientRect = function () {
     const stick = this.classList.contains("court-thumbstick");
     return {
-      left: stick ? 16 : 0,
+      left: stick ? width - 112 : 0,
       top: stick ? height - 110 : 0,
       width: stick ? 96 : width,
       height: stick ? 96 : height,
@@ -91,7 +91,7 @@ test("desktop and multi-touch controller interactions", async (t) => {
       pointerId: 1,
       pointerType: "touch",
       isPrimary: true,
-      clientX: 64,
+      clientX: width - 64,
       clientY: height - 62,
       buttons: 1,
       ...options,
@@ -191,7 +191,7 @@ test("desktop and multi-touch controller interactions", async (t) => {
       "a second thumb changes shots without releasing the moving joystick",
       async () => {
         await pointer(find(".court-thumbstick"), "pointerdown", {
-          clientX: 94,
+          clientX: width - 34,
         });
         await pointer(button("Drop"), "pointerdown", {
           pointerId: 2,
@@ -229,7 +229,7 @@ test("desktop and multi-touch controller interactions", async (t) => {
       "pointer cancellation resets the stick and pause disables shot buttons",
       async () => {
         await pointer(find(".court-thumbstick"), "pointerdown", {
-          clientX: 34,
+          clientX: width - 94,
         });
         await pointer(find(".court-thumbstick"), "pointercancel");
         assert.equal(

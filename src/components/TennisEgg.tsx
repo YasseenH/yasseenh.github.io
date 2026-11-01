@@ -457,7 +457,7 @@ export default function TennisEgg() {
                     Double-click to serve. D for drop shots. L for lobs.
                   </span>
                   <span className="court-touch-hint">
-                    Left thumb moves. Right thumb chooses Drive, Drop, or Lob.
+                    Right thumb moves. Left thumb chooses Drive, Drop, or Lob.
                     Tap Serve to start each point. Court dragging and double-tap
                     serving also work.
                   </span>
