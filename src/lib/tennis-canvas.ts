@@ -1,7 +1,25 @@
-import { COURT, serveTargetX, type Game } from "./tennis";
+import { COURT, serveTargetX, type Game } from "./tennis.ts";
 
-export function courtView(width: number, height: number) {
+export function courtView(
+  width: number,
+  height: number,
+  touchControls = false,
+) {
   const mobile = width < 600;
+  if (touchControls) {
+    const portrait = height >= width;
+    const top = portrait ? 84 : 44;
+    const bottom = portrait ? 176 : 24;
+    const scale = Math.min(
+      width / (mobile ? 620 : 870),
+      (height - top - bottom) / 1000,
+    );
+    return {
+      scale,
+      x: width / 2 - 450 * scale,
+      y: top + (height - top - bottom - 1000 * scale) / 2,
+    };
+  }
   const scale = Math.min(
     width / (mobile ? 620 : 870),
     (height - (mobile ? 144 : 68)) / 1000,
@@ -176,8 +194,9 @@ export function drawCourt(
   width: number,
   height: number,
   reduced: boolean,
+  touchControls = false,
 ) {
-  const v = courtView(width, height);
+  const v = courtView(width, height, touchControls);
   ctx.fillStyle = "#081625";
   ctx.fillRect(0, 0, width, height);
   ctx.save();
